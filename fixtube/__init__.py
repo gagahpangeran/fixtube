@@ -15,7 +15,7 @@ def create_app():
     def show_embed(video_id: str | None = None):
         video_id = video_id or request.args.get("v")
 
-        if not video_id:
+        if video_id is None or video_id.strip() == "":
             abort(404)
 
         return video_id
