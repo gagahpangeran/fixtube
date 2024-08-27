@@ -3,7 +3,7 @@ from yt_dlp.utils import YoutubeDLError
 from fixtube.utils import get_ytdl_info
 
 
-def test_get_ytdl_info_valid_id(monkeypatch, video_info):
+def test_get_ytdl_info_valid_url(monkeypatch, video_info):
     def mock_extract_info(*args, **kwargs):
         return video_info
 
@@ -20,7 +20,7 @@ def test_get_ytdl_info_valid_id(monkeypatch, video_info):
     assert "formats" in info
 
 
-def test_get_ytdl_info_not_found_id(monkeypatch, video_info):
+def test_get_ytdl_info_invalid_url(monkeypatch, video_info):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
 
