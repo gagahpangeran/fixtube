@@ -27,9 +27,7 @@ def get_video_url(formats: list[dict]) -> str | None:
     return url
 
 
-def get_ytdl_info(video_id: str):
-    video_url = f"https://www.youtube.com/watch?v={video_id}"
-
+def get_ytdl_info(url: str):
     options = {
         "dump_single_json": True,
     }
@@ -37,7 +35,7 @@ def get_ytdl_info(video_id: str):
     ytdl = YoutubeDL(options)
 
     try:
-        info = ytdl.extract_info(video_url, download=False)
+        info = ytdl.extract_info(url, download=False)
         return info
     except YoutubeDLError:
         return None

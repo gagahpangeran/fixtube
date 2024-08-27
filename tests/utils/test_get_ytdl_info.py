@@ -10,7 +10,8 @@ def test_get_ytdl_info_valid_id(monkeypatch, video_info):
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     video_id = "dQw4w9WgXcQ"
-    info = get_ytdl_info(video_id)
+    youtube_url = f"https://www.youtube.com/watch?v={video_id}"
+    info = get_ytdl_info(youtube_url)
 
     assert "id" in info
     assert info["id"] == video_id
@@ -25,7 +26,7 @@ def test_get_ytdl_info_not_found_id(monkeypatch, video_info):
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
-    video_id = "randomvideo"
-    info = get_ytdl_info(video_id)
+    youtube_url = "https://www.youtube.com/watch?v=randomvideo"
+    info = get_ytdl_info(youtube_url)
 
     assert info is None
