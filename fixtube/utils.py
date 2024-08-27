@@ -2,6 +2,27 @@ from yt_dlp import YoutubeDL
 from yt_dlp.utils import YoutubeDLError
 
 
+def get_video_info(video_id: str):
+    youtube_url = f"https://www.youtube.com/watch?v={video_id}"
+    info = get_ytdl_info(youtube_url)
+
+    if info is None:
+        return None
+
+    title = info["title"]
+    desc = info["description"]
+    video_url = get_video_url(info["formats"])
+
+    video_info = {
+        "title": title,
+        "description": desc,
+        "video_url": video_url,
+        "youtube_url": youtube_url,
+    }
+
+    return video_info
+
+
 def get_video_url(formats: list[dict]) -> str | None:
     def is_good_format(format: dict):
         # check if format has video codec
