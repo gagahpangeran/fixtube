@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, render_template
+from flask import Flask, request, abort, render_template, url_for
 from .utils import get_page_info
 
 
@@ -18,6 +18,7 @@ def create_app():
             "og:description": "Fix your youtube embed.",
             "og:site_name": "FixTube",
             "og:type": "website",
+            "og:image": url_for("static", filename="fixtube.png")
         }
 
         return render_template("embed.html", og_info=og_info, **page_info)
@@ -52,6 +53,7 @@ def create_app():
             "og:description": "404 not found.",
             "og:site_name": "FixTube",
             "og:type": "website",
+            "og:image": url_for("static", filename="fixtube.png")
         }
 
         return render_template("embed.html", og_info=og_info, **page_info), 404
