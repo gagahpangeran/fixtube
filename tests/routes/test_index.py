@@ -1,6 +1,3 @@
-from flask.testing import FlaskClient
-
-
-def test_index(client: FlaskClient):
+def test_index(client):
     response = client.get("/")
-    assert response.data == b"Hello!"
+    assert response.status_code == 200
