@@ -16,7 +16,7 @@ def get_page_info(video_id: str):
     page_info = {
         "title": title,
         "description": desc,
-        "youtube_url": youtube_url,
+        "original_url": youtube_url,
     }
 
     opengraph_info = {
