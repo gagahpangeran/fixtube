@@ -2,7 +2,7 @@ from yt_dlp import YoutubeDL
 from yt_dlp.utils import YoutubeDLError
 
 
-def get_video_info(video_id: str):
+def get_page_info(video_id: str):
     youtube_url = f"https://www.youtube.com/watch?v={video_id}"
     info = get_ytdl_info(youtube_url)
 

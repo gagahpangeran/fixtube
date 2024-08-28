@@ -1,6 +1,6 @@
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import YoutubeDLError
-from fixtube.utils import get_video_info
+from fixtube.utils import get_page_info
 
 
 def test_get_video_info_valid_id(monkeypatch, video_info):
@@ -10,7 +10,7 @@ def test_get_video_info_valid_id(monkeypatch, video_info):
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     video_id = "dQw4w9WgXcQ"
-    video_info = get_video_info(video_id)
+    video_info = get_page_info(video_id)
 
     expected_info = {
         "title": "Rick Astley - Never Gonna Give You Up (Official Music Video)",
@@ -29,6 +29,6 @@ def test_get_video_info_invalid_id(monkeypatch, video_info):
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     video_id = "dQw4w9WgXcQ"
-    video_info = get_video_info(video_id)
+    video_info = get_page_info(video_id)
 
     assert video_info is None
