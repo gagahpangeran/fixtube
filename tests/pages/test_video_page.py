@@ -1,7 +1,7 @@
 from yt_dlp import YoutubeDL
 
 
-def test_template(client, monkeypatch, video_info):
+def test_video_page(client, monkeypatch, video_info):
     def mock_extract_info(*args, **kwargs):
         return video_info
 
