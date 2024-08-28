@@ -4,8 +4,11 @@
 <head>
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}" />
+
+  {% if original_url %}
   <link rel="canonical" href="{{ original_url }}" />
   <meta http-equiv="refresh" content="0; url={{ original_url }}" />
+  {% endif %}
 
   {% for prop, content in og_info.items() %}
   <meta property="{{ prop }}" content="{{ content }}" />
