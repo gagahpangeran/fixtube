@@ -58,4 +58,21 @@ def create_app():
 
         return render_template("embed.html", og_info=og_info, **page_info), 404
 
+    @app.errorhandler(500)
+    def server_error(error):
+        page_info = {
+            "title": "Internal Server Error",
+            "description": "There is something wrong.",
+        }
+
+        og_info = {
+            "og:title": "Internal Server Error",
+            "og:description": "There is something wrong.",
+            "og:site_name": "FixTube",
+            "og:type": "website",
+            "og:image": url_for("static", filename="fixtube.png")
+        }
+
+        return render_template("embed.html", og_info=og_info, **page_info), 500
+
     return app
