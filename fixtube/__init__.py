@@ -7,7 +7,20 @@ def create_app():
 
     @app.route("/")
     def index():
-        return "Hello!"
+        page_info = {
+            "title": "FixTube",
+            "description": "Fix your youtube embed.",
+            "original_url": "https://www.youtube.com",
+        }
+
+        og_info = {
+            "og:title": "FixTube",
+            "og:description": "Fix your youtube embed.",
+            "og:site_name": "FixTube",
+            "og:type": "website",
+        }
+
+        return render_template("embed.html", og_info=og_info, **page_info)
 
     @app.route("/<video_id>")
     @app.route("/live/<video_id>")
