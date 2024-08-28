@@ -13,14 +13,25 @@ def get_page_info(video_id: str):
     desc = info["description"]
     video_url = get_video_url(info["formats"])
 
-    video_info = {
+    page_info = {
         "title": title,
         "description": desc,
-        "video_url": video_url,
         "youtube_url": youtube_url,
     }
 
-    return video_info
+    opengraph_info = {
+        "og:title": title,
+        "og:description": desc,
+        "og:type": "video.movie",
+        "og:image": info["thumbnail"],
+        "og:url": youtube_url,
+        "og:site_name": "FixTube",
+        "og:video": video_url,
+    }
+
+    page_info["og_info"] = opengraph_info
+
+    return page_info
 
 
 def get_video_url(formats: list[dict]) -> str | None:
