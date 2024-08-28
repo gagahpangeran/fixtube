@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}" />
+  <link rel="canonical" href="{{ youtube_url }}" />
+  <meta http-equiv="refresh" content="0; url={{ youtube_url }}" />
+
+  {% for prop, content in og_info.items() %}
+  <meta property="{{ prop }}" content="{{ content }}" />
+  {% endfor %}
+</head>
+
+<body>
+
+</body>
+
+</html>
