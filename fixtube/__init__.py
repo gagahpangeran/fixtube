@@ -1,4 +1,5 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
+from .utils import get_page_info
 
 
 def create_app():
@@ -18,6 +19,11 @@ def create_app():
         if video_id is None or video_id.strip() == "":
             abort(404)
 
-        return video_id
+        page_info = get_page_info(video_id)
+
+        if page_info is None:
+            abort(404)
+
+        return render_template("embed.html", **page_info)
 
     return app
