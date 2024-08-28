@@ -3,14 +3,14 @@ from yt_dlp.utils import YoutubeDLError
 from fixtube.utils import get_page_info
 
 
-def test_get_video_info_valid_id(monkeypatch, video_info):
+def test_get_page_info_valid_id(monkeypatch, video_info):
     def mock_extract_info(*args, **kwargs):
         return video_info
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     video_id = "dQw4w9WgXcQ"
-    video_info = get_page_info(video_id)
+    page_info = get_page_info(video_id)
 
     expected_info = {
         "title": "Rick Astley - Never Gonna Give You Up (Official Music Video)",
@@ -19,16 +19,16 @@ def test_get_video_info_valid_id(monkeypatch, video_info):
         "youtube_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     }
 
-    assert expected_info == video_info
+    assert expected_info == page_info
 
 
-def test_get_video_info_invalid_id(monkeypatch, video_info):
+def test_get_page_info_invalid_id(monkeypatch, video_info):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     video_id = "dQw4w9WgXcQ"
-    video_info = get_page_info(video_id)
+    page_info = get_page_info(video_id)
 
-    assert video_info is None
+    assert page_info is None
