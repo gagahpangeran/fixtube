@@ -26,7 +26,7 @@ def create_app():
     @app.route("/live/<video_id>")
     @app.route("/shorts/<video_id>")
     @app.route("/watch")
-    def show_embed(video_id: str | None = None):
+    def video(video_id: str | None = None):
         video_id = video_id or request.args.get("v")
 
         if video_id is None or video_id.strip() == "":
