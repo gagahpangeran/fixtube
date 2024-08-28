@@ -39,4 +39,21 @@ def create_app():
 
         return render_template("embed.html", **page_info)
 
+    @app.errorhandler(404)
+    def not_found(error):
+        page_info = {
+            "title": "Video not found",
+            "description": "404 not found.",
+            "original_url": "https://www.youtube.com",
+        }
+
+        og_info = {
+            "og:title": "Video not found",
+            "og:description": "404 not found.",
+            "og:site_name": "FixTube",
+            "og:type": "website",
+        }
+
+        return render_template("embed.html", og_info=og_info, **page_info), 404
+
     return app
