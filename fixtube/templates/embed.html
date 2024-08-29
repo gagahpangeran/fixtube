@@ -11,7 +11,9 @@
   {% endif %}
 
   {% for prop, content in og_info.items() %}
+  {% if content %}
   <meta property="{{ prop }}" content="{{ content }}" />
+  {% endif%}
   {% endfor %}
 
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon" />
