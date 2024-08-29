@@ -30,6 +30,33 @@ def test_get_page_info_valid_id(monkeypatch, video_info):
     assert expected_info == page_info
 
 
+def test_get_page_info_valid_id_live(monkeypatch, live_video_info):
+    def mock_extract_info(*args, **kwargs):
+        return live_video_info
+
+    monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
+
+    video_id = "NlBLeMiRKT4"
+    page_info = get_page_info(video_id)
+
+    expected_info = {
+        "title": "Live High-Definition Views from the International Space Station (Official NASA Stream) 2024-08-27 01:56",
+        "description": "Live views from the International Space Station are streaming from an external camera mounted on the station's Harmony module. \n\nThe camera is looking forward at an angle so that International Docking Adapter 2 is visible. If the Harmony module camera is not available due to operational considerations for a longer period of time, a continuous loop of recorded Earth views will be displayed with the caption \u201cPreviously Recorded.\u201d\n\nThe space station orbits Earth about 250 miles (425 kilometers) above the surface. An international partnership of five space agencies from 15 countries operates the station, and it has been continuously occupied since November 2000. It's a microgravity laboratory where science, research, and human innovation make way for new technologies and research breakthroughs not possible on Earth. More: https://go.nasa.gov/3CkVtC8\n\nDid you know you can spot the station without a telescope? It looks like a fast-moving star, but you have to know when to look up. Sign up for text messages or email alerts to let you know when (and where) to spot the station and wave to the crew: https://spotthestation.nasa.gov\n\nhttps://nasa.gov/iss\n\nCredit: NASA",
+        "original_url": "https://www.youtube.com/watch?v=NlBLeMiRKT4",
+        "og_info": {
+            "og:title": "Live High-Definition Views from the International Space Station (Official NASA Stream) 2024-08-27 01:56",
+            "og:description": "Live views from the International Space Station are streaming from an external camera mounted on the station's Harmony module. \n\nThe camera is looking forward at an angle so that International Docking Adapter 2 is visible. If the Harmony module camera is not available due to operational considerations for a longer period of time, a continuous loop of recorded Earth views will be displayed with the caption \u201cPreviously Recorded.\u201d\n\nThe space station orbits Earth about 250 miles (425 kilometers) above the surface. An international partnership of five space agencies from 15 countries operates the station, and it has been continuously occupied since November 2000. It's a microgravity laboratory where science, research, and human innovation make way for new technologies and research breakthroughs not possible on Earth. More: https://go.nasa.gov/3CkVtC8\n\nDid you know you can spot the station without a telescope? It looks like a fast-moving star, but you have to know when to look up. Sign up for text messages or email alerts to let you know when (and where) to spot the station and wave to the crew: https://spotthestation.nasa.gov\n\nhttps://nasa.gov/iss\n\nCredit: NASA",
+            "og:type": "website",
+            "og:image": "https://i.ytimg.com/vi/NlBLeMiRKT4/maxresdefault.jpg",
+            "og:url": "https://www.youtube.com/watch?v=NlBLeMiRKT4",
+            "og:site_name": "FixTube",
+            "og:video": None,
+        }
+    }
+
+    assert expected_info == page_info
+
+
 def test_get_page_info_invalid_id(monkeypatch):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
