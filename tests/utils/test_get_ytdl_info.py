@@ -43,7 +43,7 @@ def test_get_ytdl_info_valid_live_url(monkeypatch, live_video_info):
     assert info["live_status"] == "is_live"
 
 
-def test_get_ytdl_info_invalid_url(monkeypatch, video_info):
+def test_get_ytdl_info_invalid_url(monkeypatch):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
 

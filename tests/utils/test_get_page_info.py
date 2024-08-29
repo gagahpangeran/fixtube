@@ -30,7 +30,7 @@ def test_get_page_info_valid_id(monkeypatch, video_info):
     assert expected_info == page_info
 
 
-def test_get_page_info_invalid_id(monkeypatch, video_info):
+def test_get_page_info_invalid_id(monkeypatch):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
 
