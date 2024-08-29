@@ -19,3 +19,9 @@ def get_fixture_video_info():
     filename = "info.json"
     url = "https://gist.githubusercontent.com/gagahpangeran/500af5bda186454b9f3f326671069e4b/raw/10177a92e4681ccf2656487efefc640053485de0/info.json"
     return get_json_data(filename, url)
+
+
+def get_fixture_live_video_info():
+    filename = "live_info.json"
+    url = "https://gist.githubusercontent.com/gagahpangeran/500af5bda186454b9f3f326671069e4b/raw/10177a92e4681ccf2656487efefc640053485de0/live_info.json"
+    return get_json_data(filename, url)
