@@ -19,6 +19,9 @@ def test_get_ytdl_info_valid_url(monkeypatch, video_info):
     assert "title" in info
     assert "formats" in info
 
+    assert "live_status" in info
+    assert info["live_status"] != "is_live"
+
 
 def test_get_ytdl_info_valid_live_url(monkeypatch, live_video_info):
     def mock_extract_info(*args, **kwargs):
