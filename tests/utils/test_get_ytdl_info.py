@@ -20,6 +20,26 @@ def test_get_ytdl_info_valid_url(monkeypatch, video_info):
     assert "formats" in info
 
 
+def test_get_ytdl_info_valid_live_url(monkeypatch, live_video_info):
+    def mock_extract_info(*args, **kwargs):
+        return live_video_info
+
+    monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
+
+    video_id = "NlBLeMiRKT4"
+    youtube_url = f"https://www.youtube.com/watch?v={video_id}"
+    info = get_ytdl_info(youtube_url)
+
+    assert "id" in info
+    assert info["id"] == video_id
+
+    assert "title" in info
+    assert "formats" in info
+
+    assert "live_status" in info
+    assert info["live_status"] == "is_live"
+
+
 def test_get_ytdl_info_invalid_url(monkeypatch, video_info):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
