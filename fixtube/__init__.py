@@ -1,9 +1,12 @@
 from flask import Flask, request, abort, render_template, url_for
+from flask_caching import Cache
 from .utils import get_page_info
 
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_pyfile("config.py")
+    cache = Cache(app)
 
     @app.route("/")
     def index():
