@@ -30,7 +30,7 @@ def create_app():
             "og:image": url_for("static", filename="fixtube.png")
         }
 
-        return render_template("embed.html", og_info=og_info, **page_info)
+        return render_template("embed.html", **app_info, **page_info, og_info=og_info)
 
     @app.route("/<video_id>")
     @app.route("/live/<video_id>")
@@ -48,7 +48,7 @@ def create_app():
         if page_info is None:
             abort(404)
 
-        return render_template("embed.html", **page_info)
+        return render_template("embed.html", **app_info, **page_info)
 
     @app.errorhandler(404)
     def not_found(error):
@@ -66,7 +66,7 @@ def create_app():
             "og:image": url_for("static", filename="fixtube.png")
         }
 
-        return render_template("embed.html", og_info=og_info, **page_info), 404
+        return render_template("embed.html", **app_info, **page_info, og_info=og_info), 404
 
     @app.errorhandler(500)
     def server_error(error):
@@ -83,6 +83,6 @@ def create_app():
             "og:image": url_for("static", filename="fixtube.png")
         }
 
-        return render_template("embed.html", og_info=og_info, **page_info), 500
+        return render_template("embed.html", **app_info, **page_info, og_info=og_info), 500
 
     return app
