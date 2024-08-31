@@ -1,6 +1,11 @@
+import os
 from flask import Flask, request, abort, render_template, url_for
 from flask_caching import Cache
+import sentry_sdk
 from .utils import get_page_info
+
+if (sentry_dsn := os.getenv("SENTRY_DSN")) is not None:
+    sentry_sdk.init(dsn=sentry_dsn)
 
 
 def create_app():
