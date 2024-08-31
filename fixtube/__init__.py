@@ -8,6 +8,12 @@ def create_app():
     app.config.from_pyfile("config.py")
     cache = Cache(app)
 
+    app_info = {
+        "app_version": app.config["APP_VERSION"],
+        "home_page": app.config["HOME_PAGE"],
+        "issue_page": app.config["ISSUE_PAGE"],
+    }
+
     @app.route("/")
     def index():
         page_info = {
