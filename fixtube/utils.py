@@ -1,8 +1,12 @@
+import re
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import YoutubeDLError
 
 
 def get_page_info(video_id: str):
+    if not is_youtube_id(video_id):
+        return None
+
     youtube_url = f"https://www.youtube.com/watch?v={video_id}"
     info = get_ytdl_info(youtube_url)
 
@@ -83,3 +87,18 @@ def get_ytdl_info(url: str):
         return info
     except YoutubeDLError:
         return None
+
+
+# check id to prevent some spam
+def is_youtube_id(video_id: str):
+    # youtube id only 11 characters (for now)
+    if len(video_id) != 11:
+        return False
+
+    # youtube id only contains A-Z, a-z, 0-9, _, and -
+    pattern = r'^[A-Za-z0-9_-]+$'
+
+    if re.match(pattern, video_id):
+        return True
+
+    return False
