@@ -47,8 +47,11 @@ def create_app():
         if video_id is None or video_id.strip() == "":
             abort(404)
 
-        page_info = cache.get(video_id) or get_page_info(video_id)
-        cache.set(video_id, page_info)
+        page_info = cache.get(video_id)
+
+        if page_info is None:
+            page_info = get_page_info(video_id)
+            cache.set(video_id, page_info)
 
         if page_info == {}:
             abort(404)
