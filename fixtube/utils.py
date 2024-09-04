@@ -32,13 +32,16 @@ def get_page_info(video_id: str):
     }
 
     if video_format is not None:
-        video_info = {
+        og_video_info = {
             "og:type": "video.movie",
-            "og:video": video_url
+            "og:video": video_format["url"],
+            "og:video:secure_url": video_format["url"],
+            "og:video:type": f"video/{video_format['ext']}",
+            "og:video:width": video_format["width"],
+            "og:video:height": video_format["height"],
         }
 
-        opengraph_info.update(video_info)
-
+        opengraph_info.update(og_video_info)
 
     page_info["og_info"] = opengraph_info
 
