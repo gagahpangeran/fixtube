@@ -69,4 +69,4 @@ def test_get_page_info_invalid_id(monkeypatch):
     video_id = "dQw4w9WgXcQ"
     page_info = get_page_info(video_id)
 
-    assert page_info is None
+    assert page_info == {}

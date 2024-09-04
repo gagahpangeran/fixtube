@@ -50,7 +50,7 @@ def create_app():
         page_info = cache.get(video_id) or get_page_info(video_id)
         cache.set(video_id, page_info)
 
-        if page_info is None:
+        if page_info == {}:
             abort(404)
 
         return render_template("embed.html", **app_info, **page_info)

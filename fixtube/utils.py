@@ -5,13 +5,13 @@ from yt_dlp.utils import YoutubeDLError
 
 def get_page_info(video_id: str):
     if not is_youtube_id(video_id):
-        return None
+        return {}
 
     youtube_url = f"https://www.youtube.com/watch?v={video_id}"
     info = get_ytdl_info(youtube_url)
 
     if info is None:
-        return None
+        return {}
 
     title = info["title"]
     desc = info["description"]
