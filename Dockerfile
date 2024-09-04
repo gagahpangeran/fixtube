@@ -3,6 +3,7 @@ FROM python:3.11.9-slim
 WORKDIR /app
 
 COPY fixtube fixtube
+COPY .env .
 COPY requirements.txt .
 
 RUN pip install --upgrade pip
