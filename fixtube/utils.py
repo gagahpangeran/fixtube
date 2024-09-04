@@ -21,17 +21,24 @@ def get_page_info(video_id: str):
     is_live = info["live_status"] == "is_live"
 
     video_url = None if is_live else get_video_url(info["formats"])
-    page_type = "video.movie" if video_url is not None else "website"
 
     opengraph_info = {
         "og:title": title,
         "og:description": desc,
-        "og:type": page_type,
+        "og:type": "website",
         "og:image": info["thumbnail"],
         "og:url": youtube_url,
         "og:site_name": "FixTube",
-        "og:video": video_url,
     }
+
+    if video_url is not None:
+        video_info = {
+            "og:type": "video.movie",
+            "og:video": video_url
+        }
+
+        opengraph_info.update(video_info)
+
 
     page_info["og_info"] = opengraph_info
 

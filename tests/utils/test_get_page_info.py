@@ -50,7 +50,6 @@ def test_get_page_info_valid_id_live(monkeypatch, live_video_info):
             "og:image": "https://i.ytimg.com/vi/NlBLeMiRKT4/maxresdefault.jpg",
             "og:url": "https://www.youtube.com/watch?v=NlBLeMiRKT4",
             "og:site_name": "FixTube",
-            "og:video": None,
         }
     }
 
