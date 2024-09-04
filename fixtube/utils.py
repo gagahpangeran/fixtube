@@ -20,7 +20,7 @@ def get_page_info(video_id: str):
 
     is_live = info["live_status"] == "is_live"
 
-    video_url = None if is_live else get_video_url(info["formats"])
+    video_format = None if is_live else get_best_format(info["formats"])
 
     opengraph_info = {
         "og:title": title,
@@ -31,7 +31,7 @@ def get_page_info(video_id: str):
         "og:site_name": "FixTube",
     }
 
-    if video_url is not None:
+    if video_format is not None:
         video_info = {
             "og:type": "video.movie",
             "og:video": video_url
@@ -45,7 +45,7 @@ def get_page_info(video_id: str):
     return page_info
 
 
-def get_video_url(formats: list[dict]) -> str | None:
+def get_best_format(formats: list[dict]):
     def is_good_format(format: dict):
         # check if format has video codec
         if "vcodec" not in format or format["vcodec"] == "none":
@@ -64,10 +64,8 @@ def get_video_url(formats: list[dict]) -> str | None:
         return None
 
     # get best video format with highest resolution
-    best_format = max(video_formats, key=lambda f: int(f["height"]) * int(f["width"]))
-
-    url = best_format["url"]
-    return url
+    best_format = max(video_formats, key=lambda f: f["height"] * f["width"])
+    return best_format
 
 
 def get_ytdl_info(url: str):
