@@ -11,4 +11,9 @@ def test_index_page(client):
     assert "<meta property=\"og:site_name\" content=\"FixTube\" />" in data
     assert "<meta property=\"og:type\" content=\"website\" />" in data
     assert "<meta property=\"og:image\" content=\"/static/fixtube.png\" />" in data
+
     assert "<meta property=\"og:video\"" not in data
+    assert "<meta property=\"og:video:secure_url\"" not in data
+    assert "<meta property=\"og:video:type\"" not in data
+    assert "<meta property=\"og:video:width\"" not in data
+    assert "<meta property=\"og:video:height\"" not in data

@@ -25,3 +25,7 @@ def test_video_page(client, monkeypatch, video_info):
     assert "<meta property=\"og:description\"" in data
     assert "<meta property=\"og:image\"" in data
     assert "<meta property=\"og:video\"" in data
+    assert "<meta property=\"og:video:secure_url\"" in data
+    assert "<meta property=\"og:video:type\"" in data
+    assert "<meta property=\"og:video:width\"" in data
+    assert "<meta property=\"og:video:height\"" in data

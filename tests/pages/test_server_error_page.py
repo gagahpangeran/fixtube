@@ -21,4 +21,9 @@ def test_server_error_page(client, monkeypatch):
 
     assert "<link rel=\"canonical\" />" not in data
     assert "<meta http-equiv=\"refresh\"" not in data
+
     assert "<meta property=\"og:video\"" not in data
+    assert "<meta property=\"og:video:secure_url\"" not in data
+    assert "<meta property=\"og:video:type\"" not in data
+    assert "<meta property=\"og:video:width\"" not in data
+    assert "<meta property=\"og:video:height\"" not in data

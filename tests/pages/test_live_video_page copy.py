@@ -26,3 +26,7 @@ def test_video_page(client, monkeypatch, live_video_info):
     assert "<meta property=\"og:image\"" in data
 
     assert "<meta property=\"og:video\"" not in data
+    assert "<meta property=\"og:video:secure_url\"" not in data
+    assert "<meta property=\"og:video:type\"" not in data
+    assert "<meta property=\"og:video:width\"" not in data
+    assert "<meta property=\"og:video:height\"" not in data
