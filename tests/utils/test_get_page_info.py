@@ -60,13 +60,14 @@ def test_get_page_info_valid_id_live(monkeypatch, live_video_info):
     assert expected_info == page_info
 
 
-def test_get_page_info_invalid_id(monkeypatch):
+def test_get_page_info_invalid_id(app, monkeypatch):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     video_id = "dQw4w9WgXcQ"
-    page_info = get_page_info(video_id)
 
-    assert page_info == {}
+    with app.app_context():
+        page_info = get_page_info(video_id)
+        assert page_info == {}

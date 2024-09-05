@@ -43,13 +43,14 @@ def test_get_ytdl_info_valid_live_url(monkeypatch, live_video_info):
     assert info["live_status"] == "is_live"
 
 
-def test_get_ytdl_info_invalid_url(monkeypatch):
+def test_get_ytdl_info_invalid_url(app, monkeypatch):
     def mock_extract_info(*args, **kwargs):
         raise YoutubeDLError("video not found")
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
     youtube_url = "https://www.youtube.com/watch?v=randomvideo"
-    info = get_ytdl_info(youtube_url)
 
-    assert info is None
+    with app.app_context():
+        info = get_ytdl_info(youtube_url)
+        assert info is None
