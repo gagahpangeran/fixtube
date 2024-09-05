@@ -1,4 +1,5 @@
 import re
+from flask import current_app as app
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import YoutubeDLError
 
@@ -85,7 +86,8 @@ def get_ytdl_info(url: str):
     try:
         info = ytdl.extract_info(url, download=False)
         return info
-    except YoutubeDLError:
+    except YoutubeDLError as e:
+        app.logger.error(e.msg)
         return None
 
 
