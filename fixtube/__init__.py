@@ -37,7 +37,7 @@ def create_app():
 
         return render_template("embed.html", **app_info, **page_info, og_info=og_info)
 
-    @app.route("/<video_id>")
+    # @app.route("/<video_id>")
     @app.route("/live/<video_id>")
     @app.route("/shorts/<video_id>")
     @app.route("/watch")
