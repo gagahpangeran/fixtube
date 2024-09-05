@@ -7,7 +7,7 @@ def test_server_error_page(client, monkeypatch):
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
-    response = client.get("/servererror")
+    response = client.get("/watch?v=servererror")
     data = response.data.decode()
 
     assert response.status_code == 500

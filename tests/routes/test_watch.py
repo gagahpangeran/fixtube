@@ -8,7 +8,7 @@ def test_watch_id(client, monkeypatch, video_info):
 
     monkeypatch.setattr(YoutubeDL, "extract_info", mock_extract_info)
 
-    response = client.get("/dQw4w9WgXcQ")
+    response = client.get("/watch?v=dQw4w9WgXcQ")
     assert response.status_code == 200
 
 

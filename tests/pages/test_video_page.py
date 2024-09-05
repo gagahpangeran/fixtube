@@ -10,7 +10,7 @@ def test_video_page(client, monkeypatch, video_info):
     video_id = "dQw4w9WgXcQ"
     youtube_url = f"https://www.youtube.com/watch?v={video_id}"
 
-    response = client.get(f"/{video_id}")
+    response = client.get(f"/watch?v={video_id}")
     data = response.data.decode()
 
     assert "<title>Rick Astley - Never Gonna Give You Up (Official Music Video)</title>" in data
