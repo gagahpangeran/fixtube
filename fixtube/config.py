@@ -1,6 +1,6 @@
 from os import environ
 
-APP_VERSION = "0"
+APP_VERSION = "2024.09.05"
 
 CACHE_TYPE = environ.get("CACHE_TYPE", "SimpleCache")
 CACHE_DEFAULT_TIMEOUT = int(environ.get("CACHE_DEFAULT_TIMEOUT", "300"))
