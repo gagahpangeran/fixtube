@@ -1,7 +1,34 @@
+# currently this is for production only
+
 services:
   flask:
+    depends_on:
+      - wireguard
+    restart: unless-stopped
     env_file:
       - .env
     build: "."
+    network_mode: service:wireguard
+
+  wireguard:
+    image: linuxserver/wireguard
+    restart: unless-stopped
+    networks:
+      - backbone
+    volumes:
+      - "./wireguard:/config"
+      - "/lib/modules:/lib/modules:ro"
+    environment:
+      - PUID=1000
+      - PGID=1000
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
     ports:
       - "5000:5000"
+
+networks:
+  backbone:
+    driver: bridge
