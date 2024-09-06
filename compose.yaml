@@ -8,6 +8,8 @@ services:
     env_file:
       - .env
     build: "."
+    volumes:
+      - "~/.cache:/root/.cache:cached"
     network_mode: service:wireguard
 
   wireguard:
