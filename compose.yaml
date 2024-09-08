@@ -3,13 +3,20 @@
 services:
   flask:
     depends_on:
+      - redis
       - wireguard
     restart: unless-stopped
     env_file:
       - .env
     build: "."
     volumes:
-      - "~/.cache:/root/.cache:cached"
+      - "./.cache/fixtube:/root/.cache:cached"
+    network_mode: service:wireguard
+
+  redis:
+    image: redis
+    volumes:
+      - "./.cache/redis:/data:cached"
     network_mode: service:wireguard
 
   wireguard:
@@ -30,6 +37,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     ports:
       - "5000:5000"
+      - "6379:6379"
 
 networks:
   backbone:
