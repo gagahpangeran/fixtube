@@ -16,6 +16,14 @@ Issue page : {{ issue_page }}
   <meta http-equiv="refresh" content="0; url={{ original_url }}" />
   {% endif %}
 
+  {% if tw_info %}
+  {% for prop, content in tw_info.items() %}
+  {% if content %}
+  <meta property="{{ prop }}" content="{{ content }}" />
+  {% endif%}
+  {% endfor %}
+  {% endif %}
+
   {% for prop, content in og_info.items() %}
   {% if content %}
   <meta property="{{ prop }}" content="{{ content }}" />
