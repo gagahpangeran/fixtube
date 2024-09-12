@@ -37,13 +37,29 @@ def get_page_info(video_id: str):
     }
 
     if video_format is not None:
+        video_url = video_format["url"]
+        video_width = video_format["width"]
+        video_height = video_format["height"]
+        video_type = f"video/{video_format['ext']}"
+
+        tw_info = {
+            "twitter:card": "player",
+            "twitter:title": title,
+            "twitter:player:width": video_width,
+            "twitter:player:height": video_height,
+            "twitter:player:stream": video_url,
+            "twitter:player:stream:content_type": video_type,
+        }
+
+        page_info["tw_info"] = tw_info
+
         og_video_info = {
             "og:type": "video.movie",
-            "og:video": video_format["url"],
-            "og:video:secure_url": video_format["url"],
-            "og:video:type": f"video/{video_format['ext']}",
-            "og:video:width": video_format["width"],
-            "og:video:height": video_format["height"],
+            "og:video": video_url,
+            "og:video:secure_url": video_url,
+            "og:video:type": video_type,
+            "og:video:width": video_width,
+            "og:video:height": video_height,
         }
 
         opengraph_info.update(og_video_info)
