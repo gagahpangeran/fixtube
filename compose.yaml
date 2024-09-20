@@ -1,44 +1,24 @@
-# currently this is for production only
-
 services:
   flask:
     depends_on:
       - redis
-      - wireguard
     restart: unless-stopped
     env_file:
       - .env
     build: "."
+    environment:
+      - CACHE_TYPE=RedisCache
+      - CACHE_REDIS_HOST=redis
+      - CACHE_REDIS_PORT=6379
+      - CACHE_REDIS_DB=0
     volumes:
       - "./.cache/fixtube:/root/.cache:cached"
-    network_mode: service:wireguard
+    ports:
+      - "5000:5000"
 
   redis:
     image: redis
     volumes:
       - "./.cache/redis:/data:cached"
-    network_mode: service:wireguard
-
-  wireguard:
-    image: linuxserver/wireguard
-    restart: unless-stopped
-    networks:
-      - backbone
-    volumes:
-      - "./wireguard:/config"
-      - "/lib/modules:/lib/modules:ro"
-    environment:
-      - PUID=1000
-      - PGID=1000
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
     ports:
-      - "5000:5000"
       - "6379:6379"
-
-networks:
-  backbone:
-    driver: bridge
