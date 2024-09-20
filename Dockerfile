@@ -8,4 +8,4 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "fixtube:create_app()"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "--log-level", "debug", "fixtube:create_app()"]
