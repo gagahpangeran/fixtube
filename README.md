@@ -6,6 +6,9 @@ Fix your youtube embed with no ads.
 
 [demo-fixtube.webm](https://github.com/user-attachments/assets/13d8c504-a498-4d95-b1cd-0b0d43f6e2b6)
 
+_As you can see, you get ads with normal youtube embed but there is no ads when
+using fixtube embed._
+
 ## How To Use
 
 Just change the domain `youtube.com` to `fixtube.xyz`.
