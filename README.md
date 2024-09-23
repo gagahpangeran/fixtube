@@ -4,7 +4,7 @@ Fix your youtube embed with no ads.
 
 ## Demo
 
-<!-- todo: add video -->
+[demo-fixtube.webm](https://github.com/user-attachments/assets/13d8c504-a498-4d95-b1cd-0b0d43f6e2b6)
 
 ## How To Use
 
