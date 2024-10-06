@@ -19,14 +19,14 @@ Issue page : {{ issue_page }}
   {% if tw_info %}
   {% for prop, content in tw_info.items() %}
   {% if content %}
-  <meta property="{{ prop }}" content="{{ content }}" />
+  <meta property="{{ prop }}" content="{{ content|safe }}" />
   {% endif%}
   {% endfor %}
   {% endif %}
 
   {% for prop, content in og_info.items() %}
   {% if content %}
-  <meta property="{{ prop }}" content="{{ content }}" />
+  <meta property="{{ prop }}" content="{{ content|safe }}" />
   {% endif%}
   {% endfor %}
 
