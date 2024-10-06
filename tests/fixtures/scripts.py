@@ -17,7 +17,7 @@ def get_json_data(filename: str, url: str):
 
 def get_fixture_video_info():
     filename = "info.json"
-    url = "https://gist.githubusercontent.com/gagahpangeran/500af5bda186454b9f3f326671069e4b/raw/10177a92e4681ccf2656487efefc640053485de0/info.json"
+    url = "https://gist.githubusercontent.com/gagahpangeran/500af5bda186454b9f3f326671069e4b/raw/d081eac68d5ddea91fef3b26cfadad4bbd49de3c/info.json"
     return get_json_data(filename, url)
 
 
