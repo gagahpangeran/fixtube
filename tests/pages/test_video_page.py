@@ -30,10 +30,3 @@ def test_video_page(client, monkeypatch, video_info):
     assert "<meta property=\"og:video:type\"" in data
     assert "<meta property=\"og:video:width\"" in data
     assert "<meta property=\"og:video:height\"" in data
-
-    assert "<meta property=\"twitter:card\"" in data
-    assert "<meta property=\"twitter:title\"" in data
-    assert "<meta property=\"twitter:player:width\"" in data
-    assert "<meta property=\"twitter:player:height\"" in data
-    assert "<meta property=\"twitter:player:stream\"" in data
-    assert "<meta property=\"twitter:player:stream:content_type\"" in data

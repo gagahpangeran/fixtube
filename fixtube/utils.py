@@ -42,17 +42,6 @@ def get_page_info(video_id: str):
         video_height = video_format["height"]
         video_type = f"video/{video_format['ext']}"
 
-        tw_info = {
-            "twitter:card": "player",
-            "twitter:title": title,
-            "twitter:player:width": video_width,
-            "twitter:player:height": video_height,
-            "twitter:player:stream": video_url,
-            "twitter:player:stream:content_type": video_type,
-        }
-
-        page_info["tw_info"] = tw_info
-
         og_video_info = {
             "og:type": "video.movie",
             "og:video": video_url,
