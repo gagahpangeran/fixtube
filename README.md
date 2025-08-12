@@ -1,3 +1,7 @@
+_This project is archived and the website has been taken down. This was a fun
+project and I learned a lot from it. Thank you to everyone who has used this
+project._
+
 # Fixtube
 
 Fix your youtube embed with no ads.
